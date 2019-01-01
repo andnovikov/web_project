@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'market/style.css' %}">
+{% if item_list %}
+    {% for item in item_list %}
+    <div class="products-grid__item">
+        <div class="product-photo">
+            {% load static %}
+            <img src="{% static item.image.url %}">
+        </div>
+        <a href="/market/item/{{ item.id }}/" class="product-wrapper">
+        <div id="product-card_12" class="product">
+            <div class="product-content">
+                <div class="product-content__headline">
+                    <span>{{ item.item_name }}</span>
+                </div>
+                <div class="product-content__meta">
+                    <span>{{ item.cost }}</span>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No items are available.</p>
+{% endif %}
