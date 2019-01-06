@@ -7,5 +7,6 @@ from . import views
 app_name = 'market'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('index', views.index, name='index'),
     path('static/market/item/', views.index, name='item_image'),
 ]
