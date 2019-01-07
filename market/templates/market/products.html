@@ -100,7 +100,7 @@ ddsmoothmenu.init({
         	<span>Item in Cart ( 10 )</span>
             </p>
             
-             <div id="tooplate_search">
+            <div id="tooplate_search">
                 <form action="#" method="get">
                   <input type="text" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
                   <input type="submit" name="Search" value=" " alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
@@ -111,66 +111,32 @@ ddsmoothmenu.init({
     
     <div id="tooplate_main"><span class="main_border main_border_t"></span><span class="main_border main_border_b"></span>
     	<div class="product">
-        	<h1>Products</h1>
-            <div class="product_box">
-            	<div class="img_box"><span></span>
-                    <a href="productdetail"><img src="{% static '/market/images/product/01.jpg' %}" alt="image" /></a>
-				</div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-               	<div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/02.jpg' %}" alt="image" /></a>
-			  </div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-                <div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/03.jpg' %}" alt="image" /></a>
-				</div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-                <div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/04.jpg' %}" alt="image" /></a>
-				</div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-            	<div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/01.jpg' %}" alt="image" /></a>
-				</div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-               	<div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/02.jpg' %}" alt="image" /></a>
-			  </div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-                <div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/03.jpg' %}" alt="image" /></a>
-				</div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
-            <div class="product_box">
-                <div class="img_box"><span></span>
-	                <a href="productdetail"><img src="{% static '/market/images/product/04.jpg' %}" alt="image" /></a>
-				</div>
-                <h2><a href="productdetail">Product One</a></h2>
-                <p class="price">$30</p>
-            </div>
+            <ul>
+            {% if cat_list %}
+                {% for cat in cat_list %}
+                    <li><a href="products/{{ cat.id }}"><h1>{{ cat.category_name }}</h1></a>
+                        <div>
+                        {% if item_list %}
+                            {% for item in item_list %}
+                                {% if item.category.id == cat.id %}
+                                    <div class="product_box">
+                                        <div class="img_box"><span></span>
+                                            <a href="productdetail/{{ item.id }}"><img src="{% static item.image.url %}" alt="image" style="width:148;height:148px;"/></a>
+                                        </div>
+                                        <h2><a href="productdetail/{{ item.id }}">{{ item.item_name }}</a></h2>
+                                        <p class="price">{{ item.cost }}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            {% endif %}
+            </ul>
 		</div>
         
-        <hr />
+        <hr/>
         
         <div class="pagging">
             <ul>
@@ -184,9 +150,7 @@ ddsmoothmenu.init({
                 <li><a href="#" target="_parent">Next</a></li>
             </ul>
             <div class="clear"></div>
-        </div>       
-        
-            
+        </div>                   
         <div class="clear"></div>
     </div> <!-- END of main -->
     
