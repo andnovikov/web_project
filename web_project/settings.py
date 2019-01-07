@@ -25,7 +25,7 @@ SECRET_KEY = '6n(xr-)p8&n=xc8j9!l!vmg0u1ma@^e$x^nqpt^#(zfha25&d2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['andnovikov.pythonanywhere.com']
 
 
 # Application definition
@@ -33,14 +33,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'market.apps.MarketConfig',
-    'api_card.apps.ApiCardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -128,6 +126,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+STATIC_ROOT = '/home/andnovikov/web_project/static'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+# STATICFILES_DIRS = [STATIC_ROOT, os.path.join(BASE_DIR, 'static'),]
